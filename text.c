@@ -262,3 +262,105 @@ int removeDuplicates(int* nums, int numsSize) {
   }
   return c;
 }
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2)
+{
+    struct ListNode head;
+    struct ListNode *h = &head;
+    
+    if (l1 == NULL && l2 == NULL)
+        return NULL;
+    
+    while (l1 && l2) {
+        if (l1->val < l2->val) {
+            h->next = l1;
+            l1 = l1->next;
+            h = h->next;
+        } else {
+            h->next = l2;
+            l2 = l2->next;
+            h = h->next;
+        }
+    }
+
+    if (l1) {
+        h->next = l1;
+    }
+    if (l2) {
+        h->next = l2;
+    }
+  
+    return head.next;
+}
+
+char * longestCommonPrefix(char ** str, int size){
+
+    int i,j,flag=0,k=0,min=100000;
+    char *s = (char *)malloc(127*sizeof(char));
+    strcpy(s,"");
+    if(size==0)
+        return s;
+    char c;
+    for(i=0;i<size;i++)
+    {
+        if(min>strlen(str[i]))
+            min = strlen(str[i]);
+    }
+    for(i=0;i<min;i++,k++)
+    {
+        c = str[0][i];
+        for(j=0;j<size;j++)
+        {
+            if(str[j][i]!=c)
+            {
+                flag = 1;
+                break;
+            }
+        }
+    //    printf("%d ",flag);
+    //    printf("%d ",strlen(str[i]));
+        if(flag)
+            break;
+        else
+        {
+            s[k] = c;
+            s[k+1] = '\0';
+        }
+    }
+ //   printf("%s",s);
+    return s;
+}
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+int minDepth(struct TreeNode* root){
+    int x,y;
+    if(root == NULL)
+        return 0;
+    else{
+    x=minDepth(root->left);
+    y=minDepth(root->right);
+    if ((x==0) ^ (y==0)) 
+    return (x>y?x:y)+1 ;
+    if(x > y)
+    return y + 1;
+    else
+    return x + 1;
+    }
+
+}
+
