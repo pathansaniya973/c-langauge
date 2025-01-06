@@ -240,3 +240,14 @@ int strStr(char* haystack, char* needle) {
 
     return result = (j == needle_size) ? (i - needle_size) : -1;
 }
+
+int removeDuplicates(int* nums, int numsSize) {
+  int c=1;
+  for(int i=0;i<numsSize;i++){
+    if( nums[i]!=nums[c-1]){
+        nums[c]=nums[i];
+        c++;
+    }
+  }
+  return c;
+}
