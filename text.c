@@ -364,3 +364,139 @@ int minDepth(struct TreeNode* root){
 
 }
 
+int strStr(char* haystack, char* needle) {
+    int haystack_size = strlen(haystack);
+    int needle_size = strlen(needle);
+    int result = -1;
+    int i = 0;  // haystack
+    int j = 0;  // needle
+
+    while (i < (haystack_size) && j < needle_size) {
+        if (haystack[i] == needle[j]) {
+            i++;
+            j++;
+        }
+        else {
+            i = i - j + 1;
+            j = 0;
+        }
+    }
+
+    return result = (j == needle_size) ? (i - needle_size) : -1;
+}
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* twoSum(int* nums, int n, int target, int* returnSize) {
+    int *result=(int*)malloc(2*sizeof(int));
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+        if(nums[i]+nums[j]==target){
+            result [0]=i;
+            result [1]=j;
+            *returnSize=2;
+            return result;
+        }
+    }
+}
+*returnSize=0;
+return 0;
+}
+
+char * longestCommonPrefix(char ** str, int size){
+
+    int i,j,flag=0,k=0,min=100000;
+    char *s = (char *)malloc(127*sizeof(char));
+    strcpy(s,"");
+    if(size==0)
+        return s;
+    char c;
+    for(i=0;i<size;i++)
+    {
+        if(min>strlen(str[i]))
+            min = strlen(str[i]);
+    }
+    for(i=0;i<min;i++,k++)
+    {
+        c = str[0][i];
+        for(j=0;j<size;j++)
+        {
+            if(str[j][i]!=c)
+            {
+                flag = 1;
+                break;
+            }
+        }
+    //    printf("%d ",flag);
+    //    printf("%d ",strlen(str[i]));
+        if(flag)
+            break;
+        else
+        {
+            s[k] = c;
+            s[k+1] = '\0';
+        }
+    }
+ //   printf("%s",s);
+    return s;
+}
+
+int strStr(char* haystack, char* needle) {
+    int haystack_size = strlen(haystack);
+    int needle_size = strlen(needle);
+    int result = -1;
+    int i = 0;  // haystack
+    int j = 0;  // needle
+
+    while (i < (haystack_size) && j < needle_size) {
+        if (haystack[i] == needle[j]) {
+            i++;
+            j++;
+        }
+        else {
+            i = i - j + 1;
+            j = 0;
+        }
+    }
+
+    return result = (j == needle_size) ? (i - needle_size) : -1;
+}
+
+char * longestCommonPrefix(char ** str, int size){
+
+    int i,j,flag=0,k=0,min=100000;
+    char *s = (char *)malloc(127*sizeof(char));
+    strcpy(s,"");
+    if(size==0)
+        return s;
+    char c;
+    for(i=0;i<size;i++)
+    {
+        if(min>strlen(str[i]))
+            min = strlen(str[i]);
+    }
+    for(i=0;i<min;i++,k++)
+    {
+        c = str[0][i];
+        for(j=0;j<size;j++)
+        {
+            if(str[j][i]!=c)
+            {
+                flag = 1;
+                break;
+            }
+        }
+    //    printf("%d ",flag);
+    //    printf("%d ",strlen(str[i]));
+        if(flag)
+            break;
+        else
+        {
+            s[k] = c;
+            s[k+1] = '\0';
+        }
+    }
+ //   printf("%s",s);
+    return s;
+}
